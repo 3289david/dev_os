@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent System — DevOS Docs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .docs-layout{display:flex;gap:48px;padding-top:100px;min-height:100vh}.docs-sidebar{width:240px;flex-shrink:0;position:sticky;top:80px;height:fit-content}.docs-sidebar a{display:block;padding:8px 16px;color:var(--text-secondary);font-size:.9rem;border-left:2px solid transparent;margin-bottom:2px;border-radius:0 4px 4px 0}.docs-sidebar a:hover,.docs-sidebar a.active{color:var(--text);border-left-color:var(--accent);background:rgba(99,102,241,.05)}.docs-sidebar h4{padding:8px 16px;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-top:16px}.docs-content{flex:1;max-width:800px;padding-bottom:120px}.docs-content h1{font-size:2.5rem;font-weight:800;margin-bottom:16px}.docs-content h2{font-size:1.5rem;font-weight:700;margin:48px 0 16px;padding-top:24px;border-top:1px solid var(--border)}.docs-content h3{font-size:1.15rem;font-weight:600;margin:32px 0 12px}.docs-content p{color:var(--text-secondary);margin-bottom:16px;line-height:1.8}.docs-content pre{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 20px;overflow-x:auto;margin-bottom:24px}.docs-content pre code{background:none;padding:0;color:var(--text);font-size:.9rem}.docs-content ul{margin-bottom:16px;padding-left:24px}.docs-content li{color:var(--text-secondary);margin-bottom:8px;line-height:1.7}.agent-detail{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:20px}.agent-detail h3{margin-top:0;display:flex;align-items:center;gap:12px}.agent-detail .icon{font-size:1.5rem}@media(max-width:768px){.docs-sidebar{display:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="logo-icon">⚡</span> DevOS</a><div class="nav-links"><a href="getting-started.html">Getting Started</a><a href="commands.html">Commands</a><a href="agents.html" class="active">Agents</a><a href="models.html">Models</a><a href="deployment.html">Deployment</a></div></div></nav>
+
+  <div class="container docs-layout">
+    <aside class="docs-sidebar">
+      <h4>Agents</h4>
+      <a href="#overview" class="active">Overview</a>
+      <a href="#orchestrator">Orchestrator</a>
+      <a href="#planner">Planner</a>
+      <a href="#coder">Coder</a>
+      <a href="#debugger">Debugger</a>
+      <a href="#reviewer">Reviewer</a>
+      <a href="#executor">Executor</a>
+      <a href="#deployer">Deployer</a>
+      <a href="#monitor">Monitor</a>
+    </aside>
+
+    <main class="docs-content">
+      <h1>Multi-Agent System</h1>
+      <p>DevOS uses a team of specialized AI agents that collaborate to handle every aspect of software development. The Orchestrator coordinates all agents automatically.</p>
+
+      <h2 id="overview">How It Works</h2>
+      <pre><code>User Input → Orchestrator → [Planner → Coder → Executor → Debugger → Reviewer → Deployer]
+                                          ↑_____________Auto-Fix Loop_____________↓</code></pre>
+      <p>Each agent has a specific role and communicates through the Orchestrator. When you run a command like <code>devos goal</code>, the full pipeline activates automatically.</p>
+
+      <h2 id="orchestrator">🎯 Orchestrator</h2>
+      <div class="agent-detail">
+        <p>The central coordinator that routes tasks to the right agents. It understands natural language and converts your intent into structured agent operations.</p>
+        <p><strong>Capabilities:</strong></p>
+        <ul>
+          <li>Natural language to structured task conversion</li>
+          <li>Task dependency resolution and sequencing</li>
+          <li>Retry logic with exponential backoff</li>
+          <li>Progress tracking across multi-step operations</li>
+        </ul>
+      </div>
+
+      <h2 id="planner">📋 Planner Agent</h2>
+      <div class="agent-detail">
+        <p>Analyzes requirements and creates detailed implementation plans as structured JSON task lists.</p>
+        <pre><code>Input: "Build a blog with auth"
+Output: [
+  { "task": "Create Next.js project structure", "priority": 1 },
+  { "task": "Set up database schema", "priority": 2 },
+  { "task": "Implement JWT authentication", "priority": 3 },
+  { "task": "Create blog post API routes", "priority": 4 },
+  { "task": "Build UI components", "priority": 5 },
+  { "task": "Write tests", "priority": 6 }
+]</code></pre>
+      </div>
+
+      <h2 id="coder">💻 Coder Agent</h2>
+      <div class="agent-detail">
+        <p>Generates, edits, and refactors code. Supports file creation, AST-based editing, and test generation.</p>
+        <p><strong>Features:</strong></p>
+        <ul>
+          <li>Full file generation from descriptions</li>
+          <li>Targeted editing with natural language instructions</li>
+          <li>Multi-file project generation</li>
+          <li>Test generation for existing code</li>
+          <li>Respects project conventions and existing patterns</li>
+        </ul>
+      </div>
+
+      <h2 id="debugger">🔧 Debugger Agent</h2>
+      <div class="agent-detail">
+        <p>Analyzes errors and automatically generates fixes. Works in a loop with the Executor for auto-repair.</p>
+        <ul>
+          <li>Stack trace analysis and root cause identification</li>
+          <li>Auto-fix with file patching</li>
+          <li>Missing dependency detection and installation</li>
+          <li>Infinite loop prevention</li>
+        </ul>
+      </div>
+
+      <h2 id="reviewer">📝 Reviewer Agent</h2>
+      <div class="agent-detail">
+        <p>Reviews code quality, identifies issues, and suggests improvements.</p>
+        <ul>
+          <li>Code quality scoring (1-10)</li>
+          <li>Security vulnerability detection</li>
+          <li>Performance issue identification</li>
+          <li>Best practice suggestions</li>
+          <li>Automated refactoring</li>
+        </ul>
+      </div>
+
+      <h2 id="executor">▶️ Executor Agent</h2>
+      <div class="agent-detail">
+        <p>Runs processes, manages servers, and executes tests.</p>
+        <ul>
+          <li>Auto-detects project type (Node, Python, Go, Rust)</li>
+          <li>Process lifecycle management</li>
+          <li>Test runner integration</li>
+          <li>Output capture and error forwarding</li>
+        </ul>
+      </div>
+
+      <h2 id="deployer">🚀 Deployer Agent</h2>
+      <div class="agent-detail">
+        <p>Handles deployment to Vercel, Railway, Fly.io, Docker, and more.</p>
+        <ul>
+          <li>Platform auto-detection</li>
+          <li>Dockerfile generation</li>
+          <li>Environment variable sync</li>
+          <li>Deployment history and rollback</li>
+        </ul>
+      </div>
+
+      <h2 id="monitor">📊 Monitor Agent</h2>
+      <div class="agent-detail">
+        <p>Monitors deployed applications and triggers self-healing when issues are detected.</p>
+        <ul>
+          <li>HTTP health checks</li>
+          <li>Process monitoring</li>
+          <li>Auto-restart on failure</li>
+          <li>Notification on status changes</li>
+        </ul>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

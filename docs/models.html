@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Models — DevOS Docs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .docs-layout{display:flex;gap:48px;padding-top:100px;min-height:100vh}.docs-sidebar{width:240px;flex-shrink:0;position:sticky;top:80px;height:fit-content}.docs-sidebar a{display:block;padding:8px 16px;color:var(--text-secondary);font-size:.9rem;border-left:2px solid transparent;margin-bottom:2px;border-radius:0 4px 4px 0}.docs-sidebar a:hover,.docs-sidebar a.active{color:var(--text);border-left-color:var(--accent);background:rgba(99,102,241,.05)}.docs-sidebar h4{padding:8px 16px;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-top:16px}.docs-content{flex:1;max-width:800px;padding-bottom:120px}.docs-content h1{font-size:2.5rem;font-weight:800;margin-bottom:16px}.docs-content h2{font-size:1.5rem;font-weight:700;margin:48px 0 16px;padding-top:24px;border-top:1px solid var(--border)}.docs-content h3{font-size:1.15rem;font-weight:600;margin:32px 0 12px}.docs-content p{color:var(--text-secondary);margin-bottom:16px;line-height:1.8}.docs-content pre{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 20px;overflow-x:auto;margin-bottom:24px}.docs-content pre code{background:none;padding:0;color:var(--text);font-size:.9rem}.docs-content ul{margin-bottom:16px;padding-left:24px}.docs-content li{color:var(--text-secondary);margin-bottom:8px;line-height:1.7}.docs-content table{width:100%;border-collapse:collapse;margin-bottom:24px}.docs-content th{text-align:left;padding:12px 16px;background:var(--bg-card);font-weight:700;font-size:.85rem;border-bottom:2px solid var(--accent)}.docs-content td{padding:10px 16px;border-bottom:1px solid var(--border);font-size:.9rem}.callout{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);border-radius:var(--radius-sm);padding:16px 20px;margin-bottom:24px}.callout strong{display:block;margin-bottom:4px}@media(max-width:768px){.docs-sidebar{display:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="logo-icon">⚡</span> DevOS</a><div class="nav-links"><a href="getting-started.html">Getting Started</a><a href="commands.html">Commands</a><a href="agents.html">Agents</a><a href="models.html" class="active">Models</a><a href="deployment.html">Deployment</a></div></div></nav>
+
+  <div class="container docs-layout">
+    <aside class="docs-sidebar">
+      <h4>Providers</h4>
+      <a href="#openai" class="active">OpenAI</a>
+      <a href="#anthropic">Anthropic</a>
+      <a href="#google">Google Gemini</a>
+      <a href="#ollama">Ollama (Local)</a>
+      <a href="#openrouter">OpenRouter</a>
+      <h4>Features</h4>
+      <a href="#smart-router">Smart Router</a>
+      <a href="#cost">Cost Tracking</a>
+    </aside>
+
+    <main class="docs-content">
+      <h1>AI Models</h1>
+      <p>DevOS supports 25+ AI models across 5 providers. Use the best model for each task, or let Smart Router choose automatically.</p>
+
+      <h2 id="openai">OpenAI</h2>
+      <table>
+        <tr><th>Model</th><th>Best For</th><th>Cost (1M tokens)</th></tr>
+        <tr><td><code>gpt-4o</code></td><td>General coding (recommended)</td><td>$5 / $15</td></tr>
+        <tr><td><code>gpt-4o-mini</code></td><td>Fast tasks, low cost</td><td>$0.15 / $0.60</td></tr>
+        <tr><td><code>o1</code></td><td>Complex reasoning</td><td>$15 / $60</td></tr>
+        <tr><td><code>o3</code></td><td>Advanced problem solving</td><td>$10 / $40</td></tr>
+        <tr><td><code>o4-mini</code></td><td>Fast reasoning</td><td>$1.10 / $4.40</td></tr>
+      </table>
+      <pre><code>devos config set OPENAI_API_KEY=sk-your-key
+devos model use gpt-4o</code></pre>
+
+      <h2 id="anthropic">Anthropic (Claude)</h2>
+      <table>
+        <tr><th>Model</th><th>Best For</th><th>Cost (1M tokens)</th></tr>
+        <tr><td><code>claude-sonnet-4-20250514</code></td><td>Best coding model</td><td>$3 / $15</td></tr>
+        <tr><td><code>claude-opus-4-20250514</code></td><td>Complex analysis</td><td>$15 / $75</td></tr>
+        <tr><td><code>claude-3-5-haiku-20241022</code></td><td>Fast, affordable</td><td>$0.80 / $4</td></tr>
+      </table>
+      <pre><code>devos config set ANTHROPIC_API_KEY=sk-ant-your-key
+devos model use claude-sonnet-4-20250514</code></pre>
+
+      <h2 id="google">Google Gemini</h2>
+      <table>
+        <tr><th>Model</th><th>Best For</th><th>Cost (1M tokens)</th></tr>
+        <tr><td><code>gemini-2.5-pro</code></td><td>Advanced coding</td><td>$1.25 / $10</td></tr>
+        <tr><td><code>gemini-2.5-flash</code></td><td>Fast & cheap</td><td>$0.15 / $0.60</td></tr>
+      </table>
+      <pre><code>devos config set GOOGLE_API_KEY=AIza-your-key
+devos model use gemini-2.5-pro</code></pre>
+
+      <h2 id="ollama">Ollama (Free, Local)</h2>
+      <p>Run models completely offline on your machine. No API keys, no costs.</p>
+      <table>
+        <tr><th>Model</th><th>Best For</th><th>RAM Required</th></tr>
+        <tr><td><code>llama3.3</code></td><td>General coding</td><td>~8 GB</td></tr>
+        <tr><td><code>codellama</code></td><td>Code generation</td><td>~8 GB</td></tr>
+        <tr><td><code>deepseek-coder-v2</code></td><td>Code + reasoning</td><td>~16 GB</td></tr>
+        <tr><td><code>mistral</code></td><td>Fast general use</td><td>~4 GB</td></tr>
+        <tr><td><code>qwen2.5-coder</code></td><td>Code specialist</td><td>~8 GB</td></tr>
+      </table>
+      <pre><code># Install Ollama
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Pull a model
+ollama pull llama3.3
+
+# Use in DevOS
+devos model add ollama
+devos model use llama3.3</code></pre>
+
+      <h2 id="openrouter">OpenRouter (25+ Models)</h2>
+      <p>Access models from every provider through a single API key.</p>
+      <pre><code>devos config set OPENROUTER_API_KEY=sk-or-your-key
+devos model use openrouter/anthropic/claude-sonnet-4-20250514</code></pre>
+
+      <h2 id="smart-router">Smart Router</h2>
+      <p>Smart Router automatically selects the best model based on task complexity:</p>
+      <ul>
+        <li><strong>Low complexity</strong> (simple edits, explanations) → Fast/cheap model (GPT-4o-mini, Haiku)</li>
+        <li><strong>Medium complexity</strong> (feature development) → Balanced model (GPT-4o, Claude Sonnet)</li>
+        <li><strong>High complexity</strong> (architecture, debugging) → Premium model (o1, Claude Opus)</li>
+      </ul>
+      <pre><code># Enable Smart Router
+devos model auto</code></pre>
+
+      <div class="callout">
+        <strong>💡 Cost Savings</strong>
+        Smart Router can reduce AI costs by 60-80% by using cheaper models for simple tasks while reserving expensive models for complex operations.
+      </div>
+
+      <h2 id="cost">Cost Tracking</h2>
+      <p>Track your AI spending in real-time:</p>
+      <pre><code>devos cost          # View current costs
+devos cost --reset  # Reset counters</code></pre>
+      <p>DevOS tracks tokens used and calculates costs per-provider with accurate pricing tables for all supported models.</p>
+    </main>
+  </div>
+</body>
+</html>

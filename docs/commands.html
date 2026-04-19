@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commands — DevOS Docs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .docs-layout{display:flex;gap:48px;padding-top:100px;min-height:100vh}.docs-sidebar{width:240px;flex-shrink:0;position:sticky;top:80px;height:fit-content}.docs-sidebar a{display:block;padding:8px 16px;color:var(--text-secondary);font-size:.9rem;border-left:2px solid transparent;margin-bottom:2px;border-radius:0 4px 4px 0}.docs-sidebar a:hover,.docs-sidebar a.active{color:var(--text);border-left-color:var(--accent);background:rgba(99,102,241,.05)}.docs-sidebar h4{padding:8px 16px;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-top:16px}.docs-content{flex:1;max-width:800px;padding-bottom:120px}.docs-content h1{font-size:2.5rem;font-weight:800;margin-bottom:16px}.docs-content h2{font-size:1.5rem;font-weight:700;margin:48px 0 16px;padding-top:24px;border-top:1px solid var(--border)}.docs-content h3{font-size:1.15rem;font-weight:600;margin:32px 0 12px}.docs-content p{color:var(--text-secondary);margin-bottom:16px;line-height:1.8}.docs-content pre{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 20px;overflow-x:auto;margin-bottom:24px}.docs-content pre code{background:none;padding:0;color:var(--text);font-size:.9rem}.docs-content ul,.docs-content ol{margin-bottom:16px;padding-left:24px}.docs-content li{color:var(--text-secondary);margin-bottom:8px;line-height:1.7}.cmd-ref{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px}.cmd-ref h4{font-family:var(--mono);color:var(--green);margin-bottom:8px;font-size:1rem}.cmd-ref p{margin-bottom:8px}.cmd-ref .flags{font-size:.85rem;color:var(--text-muted)}@media(max-width:768px){.docs-sidebar{display:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="logo-icon">⚡</span> DevOS</a><div class="nav-links"><a href="getting-started.html">Getting Started</a><a href="commands.html" class="active">Commands</a><a href="agents.html">Agents</a><a href="models.html">Models</a><a href="deployment.html">Deployment</a></div></div></nav>
+
+  <div class="container docs-layout">
+    <aside class="docs-sidebar">
+      <h4>Commands</h4>
+      <a href="#project" class="active">Project</a>
+      <a href="#development">Development</a>
+      <a href="#ai">AI & Models</a>
+      <a href="#deployment">Deployment</a>
+      <a href="#monitoring">Monitoring</a>
+      <a href="#tools">Tools</a>
+    </aside>
+
+    <main class="docs-content">
+      <h1>CLI Commands</h1>
+      <p>Complete reference for all DevOS commands. Run <code>devos --help</code> to see this list in your terminal.</p>
+
+      <h2 id="project">Project Commands</h2>
+
+      <div class="cmd-ref">
+        <h4>devos init [description]</h4>
+        <p>Initialize a new project with AI-generated scaffolding.</p>
+        <pre><code>devos init "Express API with PostgreSQL and JWT auth"
+devos init "React dashboard with charts"</code></pre>
+        <div class="flags">Flags: <code>--template</code> <code>--no-install</code></div>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos run [script]</h4>
+        <p>Run the project with auto-detection and error recovery.</p>
+        <pre><code>devos run           # Auto-detect entry point
+devos run dev       # Run dev script
+devos run test      # Run tests</code></pre>
+        <div class="flags">Flags: <code>--auto-fix</code> <code>--watch</code></div>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos goal &lt;description&gt;</h4>
+        <p>Full autopilot — plan, code, test, debug, and deploy from a single description.</p>
+        <pre><code>devos goal "Build a Twitter clone with auth and deploy to Vercel"</code></pre>
+        <div class="flags">Flags: <code>--max-iterations</code> <code>--no-deploy</code> <code>--dry-run</code></div>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos auto</h4>
+        <p>Auto-debugging loop. Runs your project, catches errors, and fixes them automatically.</p>
+        <pre><code>devos auto           # 10 iterations by default
+devos auto --max 20  # Custom max iterations</code></pre>
+      </div>
+
+      <h2 id="development">Development Commands</h2>
+
+      <div class="cmd-ref">
+        <h4>devos edit &lt;file&gt; &lt;instruction&gt;</h4>
+        <p>AI-powered file editing with natural language.</p>
+        <pre><code>devos edit server.js "Add rate limiting middleware"
+devos edit App.jsx "Add a dark mode toggle"</code></pre>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos test [file]</h4>
+        <p>Generate and run tests.</p>
+        <pre><code>devos test                 # Run all tests
+devos test --generate      # Generate tests for all files
+devos test api/users.js    # Test specific file</code></pre>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos refactor [glob]</h4>
+        <p>AI-powered code refactoring with quality analysis.</p>
+        <pre><code>devos refactor src/**/*.js
+devos refactor --suggestions</code></pre>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos explain [file]</h4>
+        <p>Get AI explanations of code or error messages.</p>
+        <pre><code>devos explain server.js
+devos explain "TypeError: Cannot read property 'id' of undefined"</code></pre>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos find &lt;query&gt;</h4>
+        <p>Natural language code search powered by RAG.</p>
+        <pre><code>devos find "authentication logic"
+devos find "where is the database connection configured"</code></pre>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos watch</h4>
+        <p>Watch for file changes and auto-rebuild.</p>
+        <pre><code>devos watch</code></pre>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos shell</h4>
+        <p>Interactive AI shell for natural language commands.</p>
+        <pre><code>devos shell
+# > add a login page
+# > fix the failing tests
+# > deploy to production</code></pre>
+      </div>
+
+      <h2 id="ai">AI & Model Commands</h2>
+
+      <div class="cmd-ref">
+        <h4>devos model &lt;action&gt;</h4>
+        <p>Manage AI models and providers.</p>
+        <pre><code>devos model list           # Show all models
+devos model use gpt-4o     # Set default model
+devos model auto           # Enable smart routing
+devos model add ollama     # Add local provider</code></pre>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos config &lt;action&gt;</h4>
+        <p>Manage DevOS configuration.</p>
+        <pre><code>devos config set KEY=value
+devos config list
+devos config reset</code></pre>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos cost</h4>
+        <p>View AI usage costs and token consumption.</p>
+        <pre><code>devos cost             # Show total spend
+devos cost --reset     # Reset counters</code></pre>
+      </div>
+
+      <h2 id="deployment">Deployment Commands</h2>
+
+      <div class="cmd-ref">
+        <h4>devos deploy [target]</h4>
+        <p>Deploy to any platform with auto-detection.</p>
+        <pre><code>devos deploy                  # Auto-detect platform
+devos deploy --target=vercel
+devos deploy --target=railway
+devos deploy --target=fly
+devos deploy --target=docker</code></pre>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos rollback [version]</h4>
+        <p>Rollback to a previous deployment.</p>
+        <pre><code>devos rollback          # Rollback to previous
+devos rollback v1.2.3   # Rollback to specific version</code></pre>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos env &lt;action&gt;</h4>
+        <p>Manage environment variables.</p>
+        <pre><code>devos env list
+devos env set DATABASE_URL=postgres://...
+devos env sync  # Sync to deployment platform</code></pre>
+      </div>
+
+      <h2 id="monitoring">Monitoring Commands</h2>
+
+      <div class="cmd-ref">
+        <h4>devos monitor [url]</h4>
+        <p>Monitor application health with auto-healing.</p>
+        <pre><code>devos monitor https://my-app.vercel.app
+devos monitor --interval 30</code></pre>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos status</h4>
+        <p>Show project and deployment status.</p>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos logs [service]</h4>
+        <p>View application logs from any deployment.</p>
+      </div>
+
+      <h2 id="tools">Tool Commands</h2>
+
+      <div class="cmd-ref">
+        <h4>devos security</h4>
+        <p>Scan project for security vulnerabilities.</p>
+        <pre><code>devos security             # Full scan
+devos security --fix       # Auto-fix issues</code></pre>
+      </div>
+
+      <div class="cmd-ref">
+        <h4>devos migrate &lt;target&gt;</h4>
+        <p>AI-powered migration between frameworks and languages.</p>
+        <pre><code>devos migrate react         # Migrate to React
+devos migrate typescript    # Convert JS to TS</code></pre>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Reference — DevOS Docs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .docs-layout{display:flex;gap:48px;padding-top:100px;min-height:100vh}.docs-sidebar{width:240px;flex-shrink:0;position:sticky;top:80px;height:fit-content}.docs-sidebar a{display:block;padding:8px 16px;color:var(--text-secondary);font-size:.9rem;border-left:2px solid transparent;margin-bottom:2px;border-radius:0 4px 4px 0}.docs-sidebar a:hover,.docs-sidebar a.active{color:var(--text);border-left-color:var(--accent);background:rgba(99,102,241,.05)}.docs-sidebar h4{padding:8px 16px;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-top:16px}.docs-content{flex:1;max-width:800px;padding-bottom:120px}.docs-content h1{font-size:2.5rem;font-weight:800;margin-bottom:16px}.docs-content h2{font-size:1.5rem;font-weight:700;margin:48px 0 16px;padding-top:24px;border-top:1px solid var(--border)}.docs-content h3{font-size:1.15rem;font-weight:600;margin:32px 0 12px}.docs-content p{color:var(--text-secondary);margin-bottom:16px;line-height:1.8}.docs-content pre{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 20px;overflow-x:auto;margin-bottom:24px}.docs-content pre code{background:none;padding:0;color:var(--text);font-size:.9rem}.docs-content ul{margin-bottom:16px;padding-left:24px}.docs-content li{color:var(--text-secondary);margin-bottom:8px;line-height:1.7}.docs-content table{width:100%;border-collapse:collapse;margin-bottom:24px}.docs-content th{text-align:left;padding:12px 16px;background:var(--bg-card);font-weight:700;font-size:.85rem;border-bottom:2px solid var(--accent)}.docs-content td{padding:10px 16px;border-bottom:1px solid var(--border);font-size:.9rem}@media(max-width:768px){.docs-sidebar{display:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="logo-icon">⚡</span> DevOS</a><div class="nav-links"><a href="getting-started.html">Getting Started</a><a href="commands.html">Commands</a><a href="agents.html">Agents</a><a href="models.html">Models</a><a href="deployment.html">Deployment</a></div></div></nav>
+
+  <div class="container docs-layout">
+    <aside class="docs-sidebar">
+      <h4>API</h4>
+      <a href="#overview" class="active">Overview</a>
+      <a href="#orchestrator">Orchestrator</a>
+      <a href="#agents">Agents</a>
+      <a href="#ai-adapter">AI Adapter</a>
+      <a href="#config">Config</a>
+    </aside>
+
+    <main class="docs-content">
+      <h1>API Reference</h1>
+      <p>Use DevOS programmatically in your Node.js projects.</p>
+
+      <h2 id="overview">Overview</h2>
+      <pre><code>import { Orchestrator, AIAdapter, Config } from 'devos-ai';
+
+const orchestrator = new Orchestrator();
+await orchestrator.executeGoal('Build a REST API with Express');</code></pre>
+
+      <h2 id="orchestrator">Orchestrator</h2>
+      <p>The main entry point for programmatic usage.</p>
+      <pre><code>import { Orchestrator } from 'devos-ai';
+
+const orch = new Orchestrator();
+
+// Execute a natural language goal
+await orch.executeGoal(description);
+
+// Execute a structured task
+await orch.executeTask({ type, description, context });
+
+// Process natural language command
+const result = await orch.processNaturalLanguage('add auth to my app');</code></pre>
+
+      <h3>Methods</h3>
+      <table>
+        <tr><th>Method</th><th>Parameters</th><th>Returns</th></tr>
+        <tr><td><code>executeGoal(desc)</code></td><td>string</td><td>Promise&lt;object&gt;</td></tr>
+        <tr><td><code>executeTask(task)</code></td><td>{ type, description, context }</td><td>Promise&lt;object&gt;</td></tr>
+        <tr><td><code>processNaturalLanguage(input)</code></td><td>string</td><td>Promise&lt;object&gt;</td></tr>
+      </table>
+
+      <h2 id="agents">Agents</h2>
+      <p>Use individual agents directly:</p>
+      <pre><code>import { PlannerAgent, CoderAgent, DeployerAgent } from 'devos-ai';
+
+// Plan a project
+const planner = new PlannerAgent();
+const plan = await planner.createPlan('Build a blog');
+
+// Generate code
+const coder = new CoderAgent();
+await coder.generateFile('src/server.js', 'Express server with CORS');
+
+// Deploy
+const deployer = new DeployerAgent();
+await deployer.deploy({ target: 'vercel' });</code></pre>
+
+      <h2 id="ai-adapter">AI Adapter</h2>
+      <pre><code>import { AIAdapter } from 'devos-ai';
+
+const ai = new AIAdapter({
+  provider: 'openai',
+  model: 'gpt-4o'
+});
+
+const response = await ai.chat([
+  { role: 'system', content: 'You are a helpful assistant.' },
+  { role: 'user', content: 'Write a fibonacci function in JS' }
+]);</code></pre>
+
+      <h3>Options</h3>
+      <table>
+        <tr><th>Option</th><th>Type</th><th>Default</th></tr>
+        <tr><td><code>provider</code></td><td>string</td><td>'openai'</td></tr>
+        <tr><td><code>model</code></td><td>string</td><td>'gpt-4o'</td></tr>
+        <tr><td><code>temperature</code></td><td>number</td><td>0.7</td></tr>
+        <tr><td><code>maxTokens</code></td><td>number</td><td>4096</td></tr>
+        <tr><td><code>smartRouter</code></td><td>boolean</td><td>false</td></tr>
+      </table>
+
+      <h2 id="config">Config</h2>
+      <pre><code>import { Config } from 'devos-ai';
+
+const config = new Config();
+config.set('model', 'gpt-4o');
+const model = config.get('model');
+const all = config.getAll();</code></pre>
+    </main>
+  </div>
+</body>
+</html>

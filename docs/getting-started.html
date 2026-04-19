@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started — DevOS Docs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .docs-layout { display: flex; gap: 48px; padding-top: 100px; min-height: 100vh; }
+    .docs-sidebar { width: 240px; flex-shrink: 0; position: sticky; top: 80px; height: fit-content; }
+    .docs-sidebar a { display: block; padding: 8px 16px; color: var(--text-secondary); font-size: 0.9rem; border-left: 2px solid transparent; margin-bottom: 2px; border-radius: 0 4px 4px 0; }
+    .docs-sidebar a:hover, .docs-sidebar a.active { color: var(--text); border-left-color: var(--accent); background: rgba(99,102,241,0.05); }
+    .docs-sidebar h4 { padding: 8px 16px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-top: 16px; }
+    .docs-content { flex: 1; max-width: 800px; padding-bottom: 120px; }
+    .docs-content h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
+    .docs-content h2 { font-size: 1.5rem; font-weight: 700; margin: 48px 0 16px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .docs-content h3 { font-size: 1.15rem; font-weight: 600; margin: 32px 0 12px; }
+    .docs-content p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; }
+    .docs-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 20px; overflow-x: auto; margin-bottom: 24px; }
+    .docs-content pre code { background: none; padding: 0; color: var(--text); font-size: 0.9rem; }
+    .docs-content ul, .docs-content ol { margin-bottom: 16px; padding-left: 24px; }
+    .docs-content li { color: var(--text-secondary); margin-bottom: 8px; line-height: 1.7; }
+    .docs-content .callout { background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2); border-radius: var(--radius-sm); padding: 16px 20px; margin-bottom: 24px; }
+    .docs-content .callout.warn { background: rgba(234,179,8,0.1); border-color: rgba(234,179,8,0.2); }
+    .docs-content .callout strong { display: block; margin-bottom: 4px; }
+    @media (max-width: 768px) { .docs-sidebar { display: none; } }
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="logo-icon">⚡</span> DevOS</a><div class="nav-links"><a href="getting-started.html" class="active">Getting Started</a><a href="commands.html">Commands</a><a href="agents.html">Agents</a><a href="models.html">Models</a><a href="deployment.html">Deployment</a></div></div></nav>
+
+  <div class="container docs-layout">
+    <aside class="docs-sidebar">
+      <h4>Getting Started</h4>
+      <a href="#installation" class="active">Installation</a>
+      <a href="#quick-start">Quick Start</a>
+      <a href="#configuration">Configuration</a>
+      <a href="#first-project">First Project</a>
+      <a href="#ai-setup">AI Setup</a>
+      <h4>Guides</h4>
+      <a href="commands.html">Commands</a>
+      <a href="agents.html">Agent System</a>
+      <a href="models.html">AI Models</a>
+      <a href="deployment.html">Deployment</a>
+      <a href="api.html">API Reference</a>
+    </aside>
+
+    <main class="docs-content">
+      <h1>Getting Started</h1>
+      <p>Get up and running with DevOS in under 2 minutes. This guide covers installation, configuration, and your first AI-powered project.</p>
+
+      <h2 id="installation">Installation</h2>
+      <p>DevOS requires Node.js 18 or later. Install it globally via npm:</p>
+      <pre><code>npm install -g devos-ai</code></pre>
+      <p>Verify the installation:</p>
+      <pre><code>devos --version</code></pre>
+
+      <h2 id="quick-start">Quick Start (30 Seconds)</h2>
+      <pre><code># 1. Set up an AI provider (choose one)
+devos config set OPENAI_API_KEY=sk-your-key-here
+# OR use Ollama for free local models:
+devos model add ollama
+
+# 2. Create a project
+devos init "Express API with user authentication"
+
+# 3. Run it (with auto-debugging)
+devos run
+
+# 4. Deploy it
+devos deploy</code></pre>
+
+      <h2 id="configuration">Configuration</h2>
+      <p>DevOS stores configuration in your home directory. Manage it with:</p>
+      <pre><code># Set a value
+devos config set KEY=value
+
+# View all config
+devos config list
+
+# Reset to defaults
+devos config reset</code></pre>
+
+      <h3>API Keys</h3>
+      <p>Configure AI providers by setting their API keys:</p>
+      <pre><code># OpenAI
+devos config set OPENAI_API_KEY=sk-...
+
+# Anthropic
+devos config set ANTHROPIC_API_KEY=sk-ant-...
+
+# Google (Gemini)
+devos config set GOOGLE_API_KEY=AIza...
+
+# OpenRouter (25+ models)
+devos config set OPENROUTER_API_KEY=sk-or-...
+
+# Ollama (local, no key needed)
+devos model add ollama</code></pre>
+
+      <h3>Model Selection</h3>
+      <pre><code># Use a specific model
+devos model use gpt-4o
+
+# Let DevOS choose the best model per task
+devos model auto
+
+# See all available models
+devos model list</code></pre>
+
+      <h2 id="first-project">Your First Project</h2>
+      <p>Let's build a blog with React and Tailwind CSS:</p>
+      <pre><code># Create the project
+devos init "React blog with Tailwind CSS, dark mode, and markdown support"
+
+# The AI will:
+# ✓ Create folder structure
+# ✓ Generate package.json
+# ✓ Write React components
+# ✓ Set up Tailwind CSS
+# ✓ Install dependencies</code></pre>
+
+      <p>Or use Goal Mode for the full autopilot experience:</p>
+      <pre><code># This single command will plan, code, test, debug, AND deploy
+devos goal "Build a React blog with auth, markdown, and deploy to Vercel"</code></pre>
+
+      <h2 id="ai-setup">AI Provider Setup</h2>
+
+      <h3>OpenAI (Recommended for beginners)</h3>
+      <ol>
+        <li>Get an API key from <a href="https://platform.openai.com/api-keys">platform.openai.com</a></li>
+        <li>Run: <code>devos config set OPENAI_API_KEY=sk-your-key</code></li>
+        <li>Select model: <code>devos model use gpt-4o</code></li>
+      </ol>
+
+      <h3>Ollama (Free, Local)</h3>
+      <ol>
+        <li>Install Ollama from <a href="https://ollama.com">ollama.com</a></li>
+        <li>Pull a model: <code>ollama pull llama3.3</code></li>
+        <li>Enable in DevOS: <code>devos model add ollama</code></li>
+        <li>Select model: <code>devos model use llama3.3</code></li>
+      </ol>
+
+      <div class="callout">
+        <strong>💡 Pro Tip</strong>
+        Enable Smart Router to automatically select the best model for each task: <code>devos model auto</code>
+      </div>
+
+      <h3>Environment Variables</h3>
+      <p>You can also set API keys as environment variables instead of using <code>devos config</code>:</p>
+      <pre><code>export OPENAI_API_KEY=sk-your-key
+export ANTHROPIC_API_KEY=sk-ant-your-key
+export GOOGLE_API_KEY=AIza-your-key</code></pre>
+
+      <h2>What's Next?</h2>
+      <ul>
+        <li><a href="commands.html">Explore all CLI commands</a></li>
+        <li><a href="agents.html">Learn about the multi-agent system</a></li>
+        <li><a href="deployment.html">Set up deployment</a></li>
+        <li><a href="models.html">Configure AI models</a></li>
+      </ul>
+    </main>
+  </div>
+</body>
+</html>

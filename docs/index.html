@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOS — AI-Powered Full-Stack Development OS</title>
+  <meta name="description" content="The AI-powered development operating system. Natural language to code, execution, debugging, and deployment — all from your terminal.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="logo-icon">⚡</span> DevOS
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#agents">Agents</a>
+        <a href="#commands">Commands</a>
+        <a href="#models">Models</a>
+        <a href="#deploy">Deploy</a>
+        <a href="getting-started.html">Docs</a>
+        <a href="https://github.com/devos-ai/devos" class="nav-github">GitHub</a>
+      </div>
+      <button class="nav-toggle" onclick="toggleNav()">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-badge">Open Source · MIT License</div>
+      <h1 class="hero-title">
+        The AI That <span class="gradient-text">Thinks, Writes, Runs & Fixes</span> Code For You
+      </h1>
+      <p class="hero-subtitle">
+        Natural language → Code generation → Execution → Auto-debugging → Deployment.
+        <br>All from a single CLI. No IDE needed.
+      </p>
+      <div class="hero-actions">
+        <div class="install-box">
+          <code>npm install -g devos-ai</code>
+          <button onclick="copyInstall()" class="copy-btn" title="Copy">📋</button>
+        </div>
+        <a href="getting-started.html" class="btn btn-secondary">Read Docs →</a>
+      </div>
+      <div class="hero-terminal">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">Terminal</span>
+        </div>
+        <div class="terminal-body" id="terminal">
+          <div class="terminal-line">
+            <span class="prompt">$</span> <span class="cmd" id="typewriter"></span><span class="cursor">▌</span>
+          </div>
+          <div class="terminal-output" id="output"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats Bar -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat">
+        <span class="stat-number">25+</span>
+        <span class="stat-label">AI Models</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">6</span>
+        <span class="stat-label">Specialized Agents</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">22+</span>
+        <span class="stat-label">CLI Commands</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">5+</span>
+        <span class="stat-label">Deploy Targets</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Core Features</span>
+        <h2>Everything a Developer Needs. <span class="gradient-text">Automated.</span></h2>
+        <p>DevOS replaces your entire development workflow with a single intelligent CLI.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card highlight">
+          <div class="feature-icon">🎯</div>
+          <h3>Goal Mode</h3>
+          <p>Describe what you want in plain English. DevOS plans, codes, tests, and deploys — fully autonomous.</p>
+          <code>devos goal "Build a Twitter clone with auth and deploy it"</code>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Auto-Debug Loop</h3>
+          <p>Run → Detect errors → AI fixes → Re-run. Automatic until it works.</p>
+          <code>devos auto</code>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3>AI Shell</h3>
+          <p>Natural language terminal. Say "kill port 3000" instead of remembering commands.</p>
+          <code>devos shell</code>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>One-Click Deploy</h3>
+          <p>Auto-detects your stack and deploys to Vercel, Railway, Docker, Fly.io, or localhost.</p>
+          <code>devos deploy</code>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧪</div>
+          <h3>Auto Testing</h3>
+          <p>Generates unit tests, runs them, and auto-fixes failures.</p>
+          <code>devos test --fix</code>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Security Scan</h3>
+          <p>Finds exposed API keys, SQL injection risks, XSS vulnerabilities, and more.</p>
+          <code>devos security</code>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">♻️</div>
+          <h3>AI Refactoring</h3>
+          <p>Intelligent code improvements — performance, cleanup, deduplication.</p>
+          <code>devos refactor</code>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👁</div>
+          <h3>Watch Mode</h3>
+          <p>Monitors file changes and auto-fixes issues in real-time.</p>
+          <code>devos watch</code>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏥</div>
+          <h3>Self-Healing</h3>
+          <p>Server crash? Auto-restart. Production bug? Auto-patch.</p>
+          <code>devos monitor --auto-fix</code>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Code Migration</h3>
+          <p>JS→TS, React→Vue, framework upgrades — automated transformations.</p>
+          <code>devos migrate typescript</code>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Semantic Search</h3>
+          <p>Find any function, class, or pattern in your codebase with natural language.</p>
+          <code>devos find "authentication logic"</code>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3>Cost Tracking</h3>
+          <p>Track API usage and estimated costs across all providers.</p>
+          <code>devos cost</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agents Section -->
+  <section class="agents" id="agents">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Architecture</span>
+        <h2>Multi-Agent System. <span class="gradient-text">Like a Dev Team.</span></h2>
+        <p>Six specialized AI agents collaborate to handle any development task.</p>
+      </div>
+
+      <div class="agents-flow">
+        <div class="agent-card">
+          <div class="agent-icon">📋</div>
+          <h3>Planner</h3>
+          <p>Breaks requirements into actionable tasks with dependencies</p>
+        </div>
+        <div class="agent-arrow">→</div>
+        <div class="agent-card">
+          <div class="agent-icon">💻</div>
+          <h3>Coder</h3>
+          <p>Writes production-ready code, file by file</p>
+        </div>
+        <div class="agent-arrow">→</div>
+        <div class="agent-card">
+          <div class="agent-icon">⚡</div>
+          <h3>Executor</h3>
+          <p>Runs commands, manages processes, detects errors</p>
+        </div>
+        <div class="agent-arrow">→</div>
+        <div class="agent-card">
+          <div class="agent-icon">🔧</div>
+          <h3>Debugger</h3>
+          <p>Analyzes errors, generates precise fixes</p>
+        </div>
+        <div class="agent-arrow">→</div>
+        <div class="agent-card">
+          <div class="agent-icon">🔍</div>
+          <h3>Reviewer</h3>
+          <p>Quality checks, refactoring, security analysis</p>
+        </div>
+        <div class="agent-arrow">→</div>
+        <div class="agent-card">
+          <div class="agent-icon">🚀</div>
+          <h3>Deployer</h3>
+          <p>Builds, deploys, monitors in production</p>
+        </div>
+      </div>
+
+      <div class="agent-orchestrator">
+        <div class="orch-label">🧠 Orchestrator</div>
+        <p>Coordinates all agents, manages task flow, handles retries and error recovery</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commands Section -->
+  <section class="commands-section" id="commands">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">CLI Reference</span>
+        <h2>Powerful Commands. <span class="gradient-text">Simple Interface.</span></h2>
+      </div>
+
+      <div class="commands-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>devos init</code></td><td>Create project from natural language</td><td><code>devos init "React blog with Tailwind"</code></td></tr>
+            <tr><td><code>devos run</code></td><td>Run with auto-debugging</td><td><code>devos run --max-retries 5</code></td></tr>
+            <tr><td><code>devos goal</code></td><td>Full autopilot mode</td><td><code>devos goal "Build a SaaS app"</code></td></tr>
+            <tr><td><code>devos auto</code></td><td>Code → Run → Fix loop</td><td><code>devos auto --max-iterations 10</code></td></tr>
+            <tr><td><code>devos deploy</code></td><td>Deploy to cloud or local</td><td><code>devos deploy --target=vercel</code></td></tr>
+            <tr><td><code>devos shell</code></td><td>AI-powered terminal</td><td><code>devos shell</code></td></tr>
+            <tr><td><code>devos edit</code></td><td>AI code editing</td><td><code>devos edit app.js "Add auth"</code></td></tr>
+            <tr><td><code>devos test</code></td><td>Auto-generate & run tests</td><td><code>devos test --fix --coverage</code></td></tr>
+            <tr><td><code>devos refactor</code></td><td>AI code refactoring</td><td><code>devos refactor --perf</code></td></tr>
+            <tr><td><code>devos security</code></td><td>Vulnerability scan</td><td><code>devos security --fix</code></td></tr>
+            <tr><td><code>devos watch</code></td><td>Auto-fix on file changes</td><td><code>devos watch</code></td></tr>
+            <tr><td><code>devos monitor</code></td><td>Self-healing server watch</td><td><code>devos monitor --auto-fix</code></td></tr>
+            <tr><td><code>devos explain</code></td><td>Explain project or file</td><td><code>devos explain src/auth.js</code></td></tr>
+            <tr><td><code>devos find</code></td><td>Semantic code search</td><td><code>devos find "login handler"</code></td></tr>
+            <tr><td><code>devos migrate</code></td><td>Code migration</td><td><code>devos migrate typescript</code></td></tr>
+            <tr><td><code>devos model</code></td><td>Manage AI models</td><td><code>devos model use gpt-4o</code></td></tr>
+            <tr><td><code>devos config</code></td><td>Configuration</td><td><code>devos config set KEY=value</code></td></tr>
+            <tr><td><code>devos env</code></td><td>Environment variables</td><td><code>devos env set DB_URL=...</code></td></tr>
+            <tr><td><code>devos status</code></td><td>Deployment status</td><td><code>devos status</code></td></tr>
+            <tr><td><code>devos logs</code></td><td>View logs</td><td><code>devos logs -f</code></td></tr>
+            <tr><td><code>devos rollback</code></td><td>Rollback deployment</td><td><code>devos rollback v1.0.2</code></td></tr>
+            <tr><td><code>devos cost</code></td><td>API cost tracking</td><td><code>devos cost --period=week</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Models Section -->
+  <section class="models" id="models">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">AI Models</span>
+        <h2>Any Model. <span class="gradient-text">Your Choice.</span></h2>
+        <p>Use cloud APIs, local models via Ollama, or OpenRouter for 25+ models.</p>
+      </div>
+
+      <div class="models-grid">
+        <div class="model-card">
+          <div class="model-logo">🟢</div>
+          <h3>OpenAI</h3>
+          <p>GPT-4o, GPT-4o-mini, o1, o3-mini, o4-mini</p>
+          <code>devos model use gpt-4o</code>
+        </div>
+        <div class="model-card">
+          <div class="model-logo">🟠</div>
+          <h3>Anthropic</h3>
+          <p>Claude Sonnet 4, Claude Opus 4, Claude 3.5</p>
+          <code>devos model use claude-sonnet-4-20250514</code>
+        </div>
+        <div class="model-card">
+          <div class="model-logo">🔵</div>
+          <h3>Google</h3>
+          <p>Gemini 2.5 Pro, Gemini 2.5 Flash, Gemini 2.0</p>
+          <code>devos model use gemini-2.5-pro</code>
+        </div>
+        <div class="model-card">
+          <div class="model-logo">⚪</div>
+          <h3>Ollama (Local)</h3>
+          <p>Llama 3.3, CodeLlama, Mistral, Qwen, DeepSeek</p>
+          <code>devos model use llama3.3</code>
+        </div>
+        <div class="model-card">
+          <div class="model-logo">🟣</div>
+          <h3>OpenRouter</h3>
+          <p>25+ models — GPT, Claude, Gemini, Llama, Mixtral</p>
+          <code>devos model use openai/gpt-4o</code>
+        </div>
+        <div class="model-card smart">
+          <div class="model-logo">🧠</div>
+          <h3>Smart Router</h3>
+          <p>Auto-selects the best model based on task complexity</p>
+          <code>devos model auto</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deploy Section -->
+  <section class="deploy-section" id="deploy">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Deployment</span>
+        <h2>Code to Production. <span class="gradient-text">One Command.</span></h2>
+        <p>AI analyzes your project and deploys to the optimal platform automatically.</p>
+      </div>
+
+      <div class="deploy-flow">
+        <div class="deploy-step">
+          <div class="step-num">1</div>
+          <h4>Analyze</h4>
+          <p>Detects framework, dependencies, and optimal platform</p>
+        </div>
+        <div class="deploy-arrow">→</div>
+        <div class="deploy-step">
+          <div class="step-num">2</div>
+          <h4>Configure</h4>
+          <p>Generates Dockerfile, build configs, env vars</p>
+        </div>
+        <div class="deploy-arrow">→</div>
+        <div class="deploy-step">
+          <div class="step-num">3</div>
+          <h4>Build</h4>
+          <p>Compiles, bundles, and optimizes</p>
+        </div>
+        <div class="deploy-arrow">→</div>
+        <div class="deploy-step">
+          <div class="step-num">4</div>
+          <h4>Deploy</h4>
+          <p>Ships to cloud and returns live URL</p>
+        </div>
+      </div>
+
+      <div class="deploy-platforms">
+        <div class="platform"><span>▲</span> Vercel</div>
+        <div class="platform"><span>🚂</span> Railway</div>
+        <div class="platform"><span>🐳</span> Docker</div>
+        <div class="platform"><span>🪁</span> Fly.io</div>
+        <div class="platform"><span>💻</span> Local Host</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to 10x Your Development Speed?</h2>
+      <p>Install DevOS and start building with AI in seconds.</p>
+      <div class="install-box large">
+        <code>npm install -g devos-ai</code>
+        <button onclick="copyInstall()" class="copy-btn" title="Copy">📋</button>
+      </div>
+      <div class="cta-links">
+        <a href="getting-started.html" class="btn btn-primary">Getting Started Guide →</a>
+        <a href="commands.html" class="btn btn-secondary">Full Documentation →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>⚡ DevOS</h3>
+          <p>The AI-Powered Full-Stack Development OS</p>
+        </div>
+        <div class="footer-links">
+          <h4>Documentation</h4>
+          <a href="getting-started.html">Getting Started</a>
+          <a href="commands.html">Commands</a>
+          <a href="agents.html">Agents</a>
+          <a href="models.html">Models</a>
+          <a href="deployment.html">Deployment</a>
+        </div>
+        <div class="footer-links">
+          <h4>Community</h4>
+          <a href="https://github.com/devos-ai/devos">GitHub</a>
+          <a href="https://github.com/devos-ai/devos/issues">Issues</a>
+          <a href="https://github.com/devos-ai/devos/discussions">Discussions</a>
+        </div>
+        <div class="footer-links">
+          <h4>More</h4>
+          <a href="https://www.npmjs.com/package/devos-ai">NPM</a>
+          <a href="LICENSE">License (MIT)</a>
+          <a href="api.html">API Reference</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 DevOS. Open source under MIT License.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

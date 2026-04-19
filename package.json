@@ -1,0 +1,79 @@
+{
+  "name": "devos-ai",
+  "version": "1.0.0",
+  "description": "The AI-Powered Full-Stack Development OS — Natural language to code, execution, debugging, deployment, all from your terminal.",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "devos": "./bin/devos.js"
+  },
+  "scripts": {
+    "start": "node bin/devos.js",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "lint": "eslint src/",
+    "docs": "open docs/index.html"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "developer-tools",
+    "code-generation",
+    "auto-debug",
+    "deployment",
+    "multi-agent",
+    "openai",
+    "claude",
+    "gemini",
+    "ollama",
+    "devops",
+    "full-stack",
+    "terminal",
+    "natural-language",
+    "autopilot",
+    "self-healing"
+  ],
+  "author": "3289David",
+  "license": "MIT",
+  "homepage": "https://github.com/3289David/dev_os#readme",
+  "bugs": {
+    "url": "https://github.com/3289David/dev_os/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "conf": "^13.0.1",
+    "chokidar": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "glob": "^10.3.12",
+    "inquirer": "^9.2.17",
+    "ora": "^8.0.1",
+    "tree-kill": "^1.2.2",
+    "winston": "^3.13.0",
+    "tiktoken": "^1.0.15",
+    "cosmiconfig": "^9.0.0",
+    "boxen": "^7.1.1",
+    "gradient-string": "^2.0.2",
+    "figures": "^6.1.0",
+    "cli-table3": "^0.6.4",
+    "update-notifier": "^7.0.0",
+    "semver": "^7.6.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^9.2.0"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "docs/",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/3289David/dev_os.git"
+  }
+}
