@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "bin": {
-    "devos": "./bin/devos.js"
+    "devos": "bin/devos.js"
   },
   "scripts": {
     "start": "node bin/devos.js",
@@ -74,6 +74,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/3289David/dev_os.git"
+    "url": "git+https://github.com/3289David/dev_os.git"
   }
 }
