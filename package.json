@@ -1,6 +1,6 @@
 {
   "name": "devos-ai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The AI-Powered Full-Stack Development OS — Natural language to code, execution, debugging, deployment, all from your terminal.",
   "main": "src/index.js",
   "type": "module",
