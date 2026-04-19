@@ -6,7 +6,8 @@
 
 [![npm version](https://img.shields.io/npm/v/devos-ai.svg?style=flat-square&color=6366f1)](https://www.npmjs.com/package/devos-ai)
 [![license](https://img.shields.io/npm/l/devos-ai.svg?style=flat-square&color=22c55e)](LICENSE)
-[![node](https://img.shields.io/node/v/devos-ai.svg?style=flat-square&color=eab308)](package.json)
+[![node](https://img.shields.io/node/v/devos-ai.svg?style=flat-square&color=eab308)](package.json)<br><br>
+
 [![node](https://img.shields.io/badge/Website-Github%20Pages-20B2AA?style=for-the-badge)](https://3289david.github.io/dev_os/)
 
 
