@@ -19,14 +19,24 @@ export class CostTracker {
 
   // Cost per 1K tokens (approximate)
   static PRICING = {
+    'gpt-5.4-pro': { input: 0.005, output: 0.02 },
+    'gpt-5.4': { input: 0.004, output: 0.016 },
+    'gpt-5-turbo': { input: 0.003, output: 0.012 },
+    'gpt-5': { input: 0.005, output: 0.02 },
     'gpt-4o': { input: 0.0025, output: 0.01 },
     'gpt-4o-mini': { input: 0.00015, output: 0.0006 },
-    'gpt-4-turbo': { input: 0.01, output: 0.03 },
-    'gpt-4': { input: 0.03, output: 0.06 },
-    'gpt-3.5-turbo': { input: 0.0005, output: 0.0015 },
+    'o4-mini': { input: 0.0011, output: 0.0044 },
+    'o3': { input: 0.01, output: 0.04 },
+    'o1': { input: 0.015, output: 0.06 },
+    'claude-4.7-sonnet-20260401': { input: 0.004, output: 0.02 },
+    'claude-4.7-opus-20260401': { input: 0.02, output: 0.10 },
+    'claude-4.6-opus-20260201': { input: 0.018, output: 0.09 },
+    'claude-4.6-sonnet-20260201': { input: 0.0035, output: 0.018 },
     'claude-sonnet-4-20250514': { input: 0.003, output: 0.015 },
     'claude-opus-4-20250514': { input: 0.015, output: 0.075 },
     'claude-3-5-haiku-20241022': { input: 0.0008, output: 0.004 },
+    'gemini-3.1-pro': { input: 0.002, output: 0.012 },
+    'gemini-3.1-flash': { input: 0.0002, output: 0.0008 },
     'gemini-2.5-pro': { input: 0.00125, output: 0.01 },
     'gemini-2.5-flash': { input: 0.00015, output: 0.0006 },
     'ollama': { input: 0, output: 0 } // Free (local)

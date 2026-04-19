@@ -27,38 +27,45 @@
 
     <main class="docs-content">
       <h1>AI Models</h1>
-      <p>DevOS supports 25+ AI models across 5 providers. Use the best model for each task, or let Smart Router choose automatically.</p>
+      <p>DevOS supports 40+ AI models across 5 providers. Use the best model for each task, or let Smart Router choose automatically.</p>
 
       <h2 id="openai">OpenAI</h2>
       <table>
         <tr><th>Model</th><th>Best For</th><th>Cost (1M tokens)</th></tr>
-        <tr><td><code>gpt-4o</code></td><td>General coding (recommended)</td><td>$5 / $15</td></tr>
+        <tr><td><code>gpt-5.4-pro</code></td><td>Most capable (recommended)</td><td>$5 / $20</td></tr>
+        <tr><td><code>gpt-5.4</code></td><td>General coding</td><td>$4 / $16</td></tr>
+        <tr><td><code>gpt-5-turbo</code></td><td>Fast & capable</td><td>$3 / $12</td></tr>
+        <tr><td><code>gpt-4o</code></td><td>Balanced cost/quality</td><td>$2.50 / $10</td></tr>
         <tr><td><code>gpt-4o-mini</code></td><td>Fast tasks, low cost</td><td>$0.15 / $0.60</td></tr>
-        <tr><td><code>o1</code></td><td>Complex reasoning</td><td>$15 / $60</td></tr>
-        <tr><td><code>o3</code></td><td>Advanced problem solving</td><td>$10 / $40</td></tr>
+        <tr><td><code>o3</code></td><td>Advanced reasoning</td><td>$10 / $40</td></tr>
         <tr><td><code>o4-mini</code></td><td>Fast reasoning</td><td>$1.10 / $4.40</td></tr>
       </table>
       <pre><code>devos config set OPENAI_API_KEY=sk-your-key
-devos model use gpt-4o</code></pre>
+devos model use gpt-5.4-pro</code></pre>
 
       <h2 id="anthropic">Anthropic (Claude)</h2>
       <table>
         <tr><th>Model</th><th>Best For</th><th>Cost (1M tokens)</th></tr>
-        <tr><td><code>claude-sonnet-4-20250514</code></td><td>Best coding model</td><td>$3 / $15</td></tr>
-        <tr><td><code>claude-opus-4-20250514</code></td><td>Complex analysis</td><td>$15 / $75</td></tr>
+        <tr><td><code>claude-4.7-sonnet-20260401</code></td><td>Best coding model (recommended)</td><td>$4 / $20</td></tr>
+        <tr><td><code>claude-4.7-opus-20260401</code></td><td>Most capable, complex analysis</td><td>$20 / $100</td></tr>
+        <tr><td><code>claude-4.6-opus-20260201</code></td><td>Premium reasoning</td><td>$18 / $90</td></tr>
+        <tr><td><code>claude-4.6-sonnet-20260201</code></td><td>Balanced performance</td><td>$3.50 / $18</td></tr>
+        <tr><td><code>claude-sonnet-4-20250514</code></td><td>Previous gen, still great</td><td>$3 / $15</td></tr>
         <tr><td><code>claude-3-5-haiku-20241022</code></td><td>Fast, affordable</td><td>$0.80 / $4</td></tr>
       </table>
       <pre><code>devos config set ANTHROPIC_API_KEY=sk-ant-your-key
-devos model use claude-sonnet-4-20250514</code></pre>
+devos model use claude-4.7-sonnet-20260401</code></pre>
 
       <h2 id="google">Google Gemini</h2>
       <table>
         <tr><th>Model</th><th>Best For</th><th>Cost (1M tokens)</th></tr>
-        <tr><td><code>gemini-2.5-pro</code></td><td>Advanced coding</td><td>$1.25 / $10</td></tr>
-        <tr><td><code>gemini-2.5-flash</code></td><td>Fast & cheap</td><td>$0.15 / $0.60</td></tr>
+        <tr><td><code>gemini-3.1-pro</code></td><td>Most capable (recommended)</td><td>$2 / $12</td></tr>
+        <tr><td><code>gemini-3.1-flash</code></td><td>Ultra fast & cheap</td><td>$0.20 / $0.80</td></tr>
+        <tr><td><code>gemini-2.5-pro</code></td><td>Previous gen, solid</td><td>$1.25 / $10</td></tr>
+        <tr><td><code>gemini-2.5-flash</code></td><td>Budget option</td><td>$0.15 / $0.60</td></tr>
       </table>
       <pre><code>devos config set GOOGLE_API_KEY=AIza-your-key
-devos model use gemini-2.5-pro</code></pre>
+devos model use gemini-3.1-pro</code></pre>
 
       <h2 id="ollama">Ollama (Free, Local)</h2>
       <p>Run models completely offline on your machine. No API keys, no costs.</p>
@@ -88,9 +95,9 @@ devos model use openrouter/anthropic/claude-sonnet-4-20250514</code></pre>
       <h2 id="smart-router">Smart Router</h2>
       <p>Smart Router automatically selects the best model based on task complexity:</p>
       <ul>
-        <li><strong>Low complexity</strong> (simple edits, explanations) → Fast/cheap model (GPT-4o-mini, Haiku)</li>
-        <li><strong>Medium complexity</strong> (feature development) → Balanced model (GPT-4o, Claude Sonnet)</li>
-        <li><strong>High complexity</strong> (architecture, debugging) → Premium model (o1, Claude Opus)</li>
+        <li><strong>Low complexity</strong> (simple edits, explanations) → Fast/cheap model (GPT-4o-mini, Gemini 3.1 Flash)</li>
+        <li><strong>Medium complexity</strong> (feature development) → Balanced model (GPT-5.4 Pro, Claude 4.7 Sonnet)</li>
+        <li><strong>High complexity</strong> (architecture, debugging) → Premium model (Claude 4.7 Opus, Gemini 3.1 Pro)</li>
       </ul>
       <pre><code># Enable Smart Router
 devos model auto</code></pre>

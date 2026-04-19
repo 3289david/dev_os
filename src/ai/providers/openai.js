@@ -24,7 +24,11 @@ export class OpenAIProvider extends BaseProvider {
   }
 
   getModels() {
-    return ['gpt-4o', 'gpt-4o-mini', 'gpt-4-turbo', 'gpt-4', 'gpt-3.5-turbo', 'o1', 'o1-mini', 'o3-mini', 'o4-mini'];
+    return [
+      'gpt-5.4-pro', 'gpt-5.4', 'gpt-5-turbo', 'gpt-5',
+      'gpt-4o', 'gpt-4o-mini', 'gpt-4-turbo',
+      'o4-mini', 'o3', 'o3-mini', 'o1', 'o1-mini'
+    ];
   }
 
   async chat(messages, options = {}) {
@@ -32,7 +36,7 @@ export class OpenAIProvider extends BaseProvider {
     if (!apiKey) throw new Error('OpenAI API key not configured');
 
     const body = {
-      model: options.model || 'gpt-4o',
+      model: options.model || 'gpt-5.4-pro',
       messages,
       temperature: options.temperature ?? 0.7,
       max_tokens: options.maxTokens || 4096

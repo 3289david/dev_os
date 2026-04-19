@@ -24,7 +24,12 @@ export class AnthropicProvider extends BaseProvider {
   }
 
   getModels() {
-    return ['claude-sonnet-4-20250514', 'claude-opus-4-20250514', 'claude-3-5-sonnet-20241022', 'claude-3-5-haiku-20241022', 'claude-3-opus-20240229'];
+    return [
+      'claude-4.7-sonnet-20260401', 'claude-4.7-opus-20260401',
+      'claude-4.6-opus-20260201', 'claude-4.6-sonnet-20260201',
+      'claude-sonnet-4-20250514', 'claude-opus-4-20250514',
+      'claude-3-5-sonnet-20241022', 'claude-3-5-haiku-20241022'
+    ];
   }
 
   async chat(messages, options = {}) {
@@ -44,7 +49,7 @@ export class AnthropicProvider extends BaseProvider {
     }
 
     const body = {
-      model: options.model || 'claude-sonnet-4-20250514',
+      model: options.model || 'claude-4.7-sonnet-20260401',
       messages: chatMessages,
       max_tokens: options.maxTokens || 4096,
       temperature: options.temperature ?? 0.7

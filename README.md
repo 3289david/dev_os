@@ -68,7 +68,9 @@ devos goal "Build and deploy a blog with React, markdown support, and Vercel"
 | 🔄 **Auto-Debug Loop** | Runs your app, catches errors, fixes them automatically |
 | 🤖 **Multi-Agent System** | 7 specialized AI agents collaborate on tasks |
 | 🧠 **Smart Router** | Auto-selects the best AI model per task |
-| 🌐 **25+ AI Models** | OpenAI, Anthropic, Google, Ollama, OpenRouter |
+| 🌐 **40+ AI Models** | OpenAI GPT-5.4, Claude 4.7, Gemini 3.1, Ollama, OpenRouter |
+| 🖥️ **Terminal GUI** | Interactive dashboard — just run `devos` |
+| 📁 **Workspace Folder** | Set where AI creates files with `devos config set workspace=/path` |
 | 🚀 **One-Click Deploy** | Vercel, Railway, Fly.io, Docker |
 | 🔍 **Code Search (RAG)** | Natural language search across your codebase |
 | 🛡️ **Security Scanner** | Detects secrets, SQL injection, XSS, eval() |
@@ -105,10 +107,10 @@ User Input → Orchestrator → Planner → Coder → Executor → Debugger → 
 
 | Provider | Models | Setup |
 |---|---|---|
-| **OpenAI** | GPT-4o, o1, o3, o4-mini | `devos config set OPENAI_API_KEY=sk-...` |
-| **Anthropic** | Claude Sonnet 4, Opus 4, Haiku 3.5 | `devos config set ANTHROPIC_API_KEY=sk-ant-...` |
-| **Google** | Gemini 2.5 Pro, 2.5 Flash | `devos config set GOOGLE_API_KEY=AIza...` |
-| **OpenRouter** | 25+ models via single API | `devos config set OPENROUTER_API_KEY=sk-or-...` |
+| **OpenAI** | GPT-5.4 Pro, GPT-5 Turbo, o3, o4-mini | `devos config set OPENAI_API_KEY=sk-...` |
+| **Anthropic** | Claude 4.7 Sonnet/Opus, Claude 4.6 Opus/Sonnet | `devos config set ANTHROPIC_API_KEY=sk-ant-...` |
+| **Google** | Gemini 3.1 Pro/Flash, 2.5 Pro | `devos config set GOOGLE_API_KEY=AIza...` |
+| **OpenRouter** | 40+ models via single API | `devos config set OPENROUTER_API_KEY=sk-or-...` |
 
 ### Local (Free)
 
@@ -122,9 +124,9 @@ User Input → Orchestrator → Planner → Coder → Executor → Debugger → 
 devos model auto  # Automatically picks the best model per task
 ```
 
-- **Simple tasks** → cheap/fast model (GPT-4o-mini, Haiku)
-- **Medium tasks** → balanced model (GPT-4o, Claude Sonnet)
-- **Complex tasks** → premium model (o1, Claude Opus)
+- **Simple tasks** → cheap/fast model (GPT-4o-mini, Gemini 3.1 Flash)
+- **Medium tasks** → balanced model (GPT-5.4 Pro, Claude 4.7 Sonnet)
+- **Complex tasks** → premium model (Claude 4.7 Opus, Gemini 3.1 Pro)
 
 Saves 60-80% on AI costs.
 

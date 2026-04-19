@@ -54,9 +54,9 @@ export class SmartRouter {
     const fastModels = {
       openai: 'gpt-4o-mini',
       anthropic: 'claude-3-5-haiku-20241022',
-      google: 'gemini-2.5-flash',
+      google: 'gemini-3.1-flash',
       ollama: 'llama3.3',
-      openrouter: 'openai/gpt-4o-mini'
+      openrouter: 'google/gemini-3.1-flash'
     };
 
     for (const name of priority) {
@@ -72,11 +72,11 @@ export class SmartRouter {
   selectBalanced(providers) {
     const priority = ['openai', 'anthropic', 'google', 'openrouter', 'ollama'];
     const balancedModels = {
-      openai: 'gpt-4o',
-      anthropic: 'claude-sonnet-4-20250514',
-      google: 'gemini-2.5-pro',
+      openai: 'gpt-5.4-pro',
+      anthropic: 'claude-4.7-sonnet-20260401',
+      google: 'gemini-3.1-pro',
       ollama: 'qwen2.5-coder',
-      openrouter: 'anthropic/claude-sonnet-4-20250514'
+      openrouter: 'anthropic/claude-4.7-sonnet-20260401'
     };
 
     for (const name of priority) {
@@ -92,11 +92,11 @@ export class SmartRouter {
   selectBest(providers) {
     const priority = ['anthropic', 'openai', 'google', 'openrouter', 'ollama'];
     const bestModels = {
-      openai: 'gpt-4o',
-      anthropic: 'claude-opus-4-20250514',
-      google: 'gemini-2.5-pro',
+      openai: 'gpt-5.4-pro',
+      anthropic: 'claude-4.7-opus-20260401',
+      google: 'gemini-3.1-pro',
       ollama: 'qwen2.5-coder',
-      openrouter: 'anthropic/claude-opus-4-20250514'
+      openrouter: 'anthropic/claude-4.7-opus-20260401'
     };
 
     for (const name of priority) {

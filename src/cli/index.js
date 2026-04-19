@@ -24,6 +24,7 @@ import { registerEnvCommand } from './commands/env.js';
 import { registerSecurityCommand } from './commands/security.js';
 import { registerCostCommand } from './commands/cost.js';
 import { registerMigrateCommand } from './commands/migrate.js';
+import { launchGUI } from './gui.js';
 
 const BANNER = `
   ██████╗ ███████╗██╗   ██╗ ██████╗ ███████╗
@@ -39,7 +40,7 @@ export function createCLI() {
 
   program
     .name('devos')
-    .version('1.0.0')
+    .version('1.2.0')
     .description('DevOS — The AI-Powered Full-Stack Development OS')
     .option('--no-color', 'Disable colored output')
     .option('--verbose', 'Enable verbose logging')
@@ -92,6 +93,7 @@ ${chalk.gray('Docs: https://devos.dev | GitHub: https://github.com/devos-ai/devo
   registerMigrateCommand(program);
 
   // Default action: if a natural language string is passed, treat as goal
+  // If no args at all, launch the interactive GUI dashboard
   program.argument('[query...]', 'Natural language command (treated as goal)')
     .action(async (query, opts) => {
       if (query && query.length > 0) {
@@ -106,7 +108,8 @@ ${chalk.gray('Docs: https://devos.dev | GitHub: https://github.com/devos-ai/devo
         const { GoalCommand } = await import('./commands/goal.js');
         await GoalCommand(fullQuery, program.opts());
       } else {
-        program.help();
+        // No command given → launch interactive GUI
+        await launchGUI();
       }
     });
 

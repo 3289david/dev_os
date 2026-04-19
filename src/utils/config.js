@@ -15,6 +15,7 @@ export class ConfigManager {
         GOOGLE_API_KEY: { type: 'string', default: '' },
         GEMINI_API_KEY: { type: 'string', default: '' },
         OPENROUTER_API_KEY: { type: 'string', default: '' },
+        workspace: { type: 'string', default: '' },
         providers: {
           type: 'object',
           default: {},
